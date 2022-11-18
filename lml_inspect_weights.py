@@ -1,13 +1,6 @@
 import torch
 import torch.nn as nn
-import numpy as np
-from skimage import io, transform
-import random
-from torch.utils.data import DataLoader
-import pickle
-from data_loader import TrainDataset
 from config import parse_args
-import os
 
 
 class NeuralNet(nn.Module):
@@ -21,7 +14,7 @@ class NeuralNet(nn.Module):
         x = self.fc1(x)
         x = self.fc2(x)
         x = self.fc3(x)
-        return x
+        return
 
 
 if __name__ == '__main__':
@@ -62,3 +55,9 @@ if __name__ == '__main__':
             print(i, layer)
             # print(layer.weight)
             # print(layer.weight.data)
+    print("*" * 10)
+    print(model.fc1[0].bias)
+    data_arr = model.fc1[0].bias.cpu().detach().numpy()
+    print(data_arr)
+    print(len(data_arr))
+    print(model.state_dict())
